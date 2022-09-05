@@ -33,3 +33,11 @@ class MascotasViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response({'message':'Mascota actualizado correctamente!'}, status=status.HTTP_200_OK)
         return Response({'message':'', 'error':serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    
+    def destroy(self, request, pk=None):
+        product = self.get_queryset().filter(id=pk).first() # get instance      
+         
+        if product:
+            return Response({'message':'Producto eliminado correctamente!'}, status=status.HTTP_200_OK)
+        return Response({'error':'No existe un Producto con estos datos!'}, status=status.HTTP_400_BAD_REQUEST)
