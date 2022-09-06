@@ -36,8 +36,9 @@ class MascotasViewSet(viewsets.ModelViewSet):
 
     
     def destroy(self, request, pk=None):
-        product = self.get_queryset().filter(id=pk).first() # get instance      
+        mascota = self.get_queryset().filter(id=pk).first() # get instance      
          
-        if product:
-            return Response({'message':'Producto eliminado correctamente!'}, status=status.HTTP_200_OK)
-        return Response({'error':'No existe un Producto con estos datos!'}, status=status.HTTP_400_BAD_REQUEST)
+        if mascota:
+            mascota.delete()
+            return Response({'message':'Fue eliminado correctamente!'}, status=status.HTTP_200_OK)
+        return Response({'error':'No existen datos!'}, status=status.HTTP_400_BAD_REQUEST)
