@@ -1,6 +1,8 @@
 
 from django.db import models
 
+from base.models import BaseModel
+
 sexo = [
   ['Macho', 'Macho'],
   ["Hembra", 'Hembra']
@@ -28,7 +30,7 @@ opciones = [
   ['NO', 'NO']
 ]
 
-class Mascotas(models.Model):
+class Mascotas(BaseModel):
   nombre = models.CharField(max_length=150)
   sexo = models.CharField(choices=sexo, null=False, max_length=150)
   edad = models.CharField(choices=edad, max_length=150)

@@ -1,8 +1,8 @@
 
-from distutils.command.upload import upload
-from tabnanny import verbose
+
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from simple_history.models import HistoricalRecords
 # Create your models here.
 
 class UserManger(BaseUserManager):
@@ -37,6 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active= models.BooleanField(default=True)
     is_staff= models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
+    historical = HistoricalRecords()
     objects = UserManger()
 
     class Meta:
